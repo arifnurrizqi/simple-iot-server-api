@@ -3,6 +3,13 @@
 Proyek ini adalah **simulasi dashboard monitoring IoT** sederhana. Data seperti **temperature**, **humidity**, dan **pressure** disediakan oleh API server berbasis **Node.js**, kemudian ditampilkan ke antarmuka web menggunakan **HTML + TailwindCSS + JavaScript (fetch API)**.
 
 ---
+## 🎯 Upgrade API Server:
+- Menyimpan data dari POST request.
+- Menyimpan data sebagai array of objects di memori.
+- Tiap data disimpan bersama timestamp.
+- Endpoint /api/data → GET untuk ambil semua data.
+- Endpoint /api/data → POST untuk kirim data.
+- Tetap menggunakan API key untuk keamanan.
 
 ## 📁 Struktur Proyek
 
@@ -47,7 +54,20 @@ node server.js
 
 API akan berjalan di: [http://localhost:3000/api/data](http://localhost:3000/api/data)
 
-### 4. Buka Dashboard
+### 4. Uji dengan Insomnia / Postman
+POST → http://localhost:3000/api/data?apikey=123456789iotkey
+Body JSON:
+```json
+{
+  "temperature": 28.5,
+  "humidity": 70,
+  "pressure": 1012
+}
+```
+
+---
+
+### 5. Buka Dashboard
 Buka file `index.html` langsung di browser atau gunakan ekstensi **Live Server** di VSCode agar tidak terkena kendala CORS lokal.
 
 ---
@@ -63,11 +83,19 @@ Buka file `index.html` langsung di browser atau gunakan ekstensi **Live Server**
 
 ---
 
-## 📦 Tech Stack
+## Tech Stack
 
 - **Backend:** Node.js, Express
 - **Frontend:** HTML, TailwindCSS, JavaScript
 - **API Testing:** Postman / Browser / fetch()
+
+---
+
+## 📦 Hasil:
+- Data dikirim oleh alat lain (misalnya ESP32) via POST.
+- Data disimpan di server.
+- Dashboard GET hanya menampilkan data terakhir.
+- Siap dipakai sebagai basis sistem monitoring IoT real-time.
 
 ---
 

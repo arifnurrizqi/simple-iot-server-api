@@ -33,15 +33,15 @@
 				fetch("http://localhost:3000/api/data?apikey=123456789iotkey")
 					.then((res) => res.json())
 					.then((data) => {
+						const last = data[data.length - 1]; // Ambil data terakhir
 						document.getElementById(
 							"temp"
-						).textContent = `${data.temperature} °C`;
-						document.getElementById("hum").textContent = `${data.humidity} %`;
+						).textContent = `${last.temperature} °C`;
+						document.getElementById("hum").textContent = `${last.humidity} %`;
 						document.getElementById(
 							"pres"
-						).textContent = `${data.pressure} hPa`;
-					})
-					.catch((err) => console.error("Error fetching data:", err));
+						).textContent = `${last.pressure} hPa`;
+					});
 			}
 
 			// Fetch data every 5 seconds
